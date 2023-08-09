@@ -1,0 +1,70 @@
+﻿@model Cinema
+@{
+    ViewData["Title"] = "Add New Cinema";
+}
+<div class="row-text">
+   <div class="col-md-8 offset-2">
+       <p>
+           <h1>Add new Cinema</h1>
+       </p>
+       <div class="row">
+            <div class="col-md-8">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger">
+                    </div>
+                    <div class="form-group">
+                      
+                        <img id="CinemaUrlpre" class="border-info rounded-circle" style="max-width: 150px" />
+
+                    </div>
+                    <div class="form-group">
+                        <lable asp-for="CinemaUrl" class="control-label">CinemaUrl</lable>
+                        <input asp-for="CinemaUrl" class="form-control" />
+                        <span asp-validation-for="CinemaUrl" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <lable asp-for="CinemaName" class="control-label">CinemaName</lable>
+                        <input asp-for="CinemaName" class="form-control" />
+                        <span asp-validation-for="CinemaName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <lable asp-for="Description" class="control-label">Description</lable>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary " asp-action="Index">Show All</a>
+
+                    </div>
+                </form>
+
+            </div>
+       </div>
+       
+   </div>
+
+</div>
+
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            var output = document.getElementById('CinemaUrlpre');
+            output.src = $("#CinemaUrl").val();
+        })
+
+
+        $("#CinemaUrl").on("change", function () {
+            var output = document.getElementById('CinemaUrlpre');
+            output.src = $(this).val();
+        })
+    </script>
+}
+<style>
+        .form-group{
+            margin:10px 10px
+        }
+</style>
+               

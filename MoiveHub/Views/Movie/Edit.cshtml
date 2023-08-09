@@ -1,0 +1,104 @@
+﻿@model NewMovieModel
+@using MoiveHub.Data.ViewModel
+@using MoiveHub.Data.Enum;
+@{
+    ViewData["Title"] = "Update New Movie";
+}
+<div class="row-text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Update new Movie</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger">
+                    </div>
+
+                    <div class="form-group">
+                        <lable asp-for="MovieName" class="control-label">MovieName</lable>
+                        <input asp-for="MovieName" class="form-control" />
+                        <span asp-validation-for="MovieName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <lable asp-for="Description" class="control-label">Description</lable>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StartDate" class="control-label">StartDate</label>
+                        <input asp-for="StartDate" type="date" class="form-control" />
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EndDate" class="control-label">EndDate</label>
+                        <input asp-for="EndDate" type="date" class="form-control" />
+                        <span asp-validation-for="EndDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Prize" class="control-label">Prize</label>
+                        <input asp-for="Prize" type="number" class="form-control" />
+                        <span asp-validation-for="Prize" class="text-danger"></span>
+                    </div>
+                </form>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="CinemaId" class="control-label">CinemaId</label>
+                        <select asp-for="CinemaId" class="form-control" asp-items="ViewBag.Cinemas" multiple></select>
+                        <span asp-validation-for="CinemaId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MovieCatogory" class="control-label">MovieCatogory</label>
+                        <select asp-for="MovieCatogory" class="form-control" asp-items="Html.GetEnumSelectList<MovieCatogory>()"></select>
+                        <span asp-validation-for="MovieCatogory" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProducerId" class="control-label">ProducerId</label>
+                        <select asp-for="ProducerId" class="form-control" asp-items="ViewBag.Producers" multiple></select>
+                        <span asp-validation-for="ProducerId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ActorId" class="control-label">ActorId</label>
+                        <select asp-for="ActorId" class="form-control" asp-items="ViewBag.Actors" multiple></select>
+                        <span asp-validation-for="ActorId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <img id="MovieUrlpre" class="border-info rounded-circle" style="max-width: 150px" />
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <lable asp-for="MovieUrl" class="control-label">MovieUrl</lable>
+                    <input asp-for="MovieUrl" class="form-control" />
+                    <span asp-validation-for="MovieUrl" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 offset-4 text-center">
+                    <img width="100%" id="MovieUrlPre" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-outline-success float-right" />
+                    <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById('MovieUrlpre');
+            output.src = $("#MovieUrl").val();
+        })
+
+
+        $("#MovieUrl").on("change", function () {
+            var output = document.getElementById('MovieUrlpre');
+            output.src = $(this).val();
+        })
+    </script>
+}
